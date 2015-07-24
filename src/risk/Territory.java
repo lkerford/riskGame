@@ -2,7 +2,7 @@ package risk;
 
 import java.util.ArrayList;
 
-public class Territory {
+public class Territory extends GameObject {
   private String name;
   private ArrayList<Territory> neighbours;
   private Player owner; 
@@ -15,6 +15,9 @@ public class Territory {
     neighbours = new ArrayList<Territory>();
     occupied = false;
     
+  }
+  public String getName(){
+    return name;
   }
   public Boolean getState(){
     return occupied;

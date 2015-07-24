@@ -6,52 +6,55 @@ public class Player {
   String name;
   int orderOfPlay;
   Army army;
-  int cash;
+  Cash cash;
   ArrayList<Territory> territories; 
   
   public Player(){
     orderOfPlay =1;
     name = "player" + orderOfPlay;
-    
+    cash = new Cash();
+    territories = new  ArrayList<Territory>();
   }
 
   
   public Player(int order){
     orderOfPlay =order;
     name = "player" + orderOfPlay;
-    
+    cash = new Cash();
+    territories = new  ArrayList<Territory>();
   }
   public Player(String name){
     orderOfPlay =0;
     this.name = name;
-    
+    cash = new Cash();
+    territories = new  ArrayList<Territory>();
   }
   public Player(String name, int order){
     orderOfPlay =order;
     this.name = name;
-    
+    cash = new Cash();
+    territories = new  ArrayList<Territory>();
   }
   
-  String getName(){
+  public String getName(){
     return name;
   }
   
-  int getOrder() {
+  public int getOrder() {
     return orderOfPlay;
   }
-  
-  int getCash(){
-    return cash;
-  }
-  
-  void changeName(String newName){
+    
+  public void changeName(String newName){
     name = newName;
   }
-  void changeCash(int modCash){
-    cash += modCash;
+  public Cash getCash(){
+    return cash;
   }
-  
-  public void proposeTrade(Player otherPlayer, int cash){
-    
+  public void acquireTerritory(Territory t){
+    territories.add(t);
+    t.addOwner(this);
+  }
+  public void removeTerritory(Territory t){
+    territories.remove(t);
   }
 }
