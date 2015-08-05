@@ -3,16 +3,22 @@ package risk;
 import java.util.ArrayList;
 
 public class Player {
-  String name;
-  int orderOfPlay;
-  Cash cash;
-  ArrayList<Territory> territories; 
+  private String name;
+  private int orderOfPlay;
+ private Cash cash;
+  private ArrayList<Territory> territories; 
+  private boolean newTrade;
+  private boolean newTreaty;
+  private ArrayList<Treaties> agreaments;
   
   public Player(){
     orderOfPlay =1;
     name = "player" + orderOfPlay;
     cash = new Cash();
     territories = new  ArrayList<Territory>();
+    newTrade = false;
+    newTreaty = false;
+    agreaments = new ArrayList<Treaties>();
   }
 
   
@@ -21,18 +27,23 @@ public class Player {
     name = "player" + orderOfPlay;
     cash = new Cash();
     territories = new  ArrayList<Territory>();
+    newTrade = false;
+    newTreaty = false;
+    agreaments = new ArrayList<Treaties>();
   }
   public Player(String name){
     orderOfPlay =0;
     this.name = name;
     cash = new Cash();
     territories = new  ArrayList<Territory>();
+    agreaments = new ArrayList<Treaties>();
   }
   public Player(String name, int order){
     orderOfPlay =order;
     this.name = name;
     cash = new Cash();
     territories = new  ArrayList<Territory>();
+    agreaments = new ArrayList<Treaties>();
   }
   
   public String getName(){
@@ -56,4 +67,22 @@ public class Player {
   public void removeTerritory(Territory t){
     territories.remove(t);
   }
+ public void newTreaty(boolean state){
+   newTreaty = state;
+ }
+ public boolean getNewTreaty(){
+   return newTreaty;
+ }
+ 
+ public ArrayList<Treaties> getTreaties(){
+   return agreaments;
+ }
+ 
+ public void addTreaty(Treaties t){
+   agreaments.add(t);
+ }
+ public void removeTreaty(Treaties t){
+   agreaments.remove(t);
+ }
 }
+

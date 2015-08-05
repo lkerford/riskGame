@@ -21,26 +21,33 @@ public class Treaties {
     active = true;
     violated = false;
     this.index = index;
+    this.receiver.newTreaty(true);
   }
   
-  public void respond(boolean responce){
-    if(active){
-      accepted = responce;
-      if(accepted){
-        boundary[0].modifyTreatyState(true, this);
-        boundary[1].modifyTreatyState(true, this);
-      }
+  public void respond(boolean responce, Player p){
+    if(p == receiver){
+      if(active && !accepted){
+        accepted = responce;
+        if(accepted){
+          boundary[0].modifyTreatyState(true, this);
+          boundary[1].modifyTreatyState(true, this);
+          receiver.addTreaty(this);
+          offerer.addTreaty(this);
+        }
+        else{
+          deactivate();
+        }
+      }   
     }
-    else if (!responce){}
-     deactivate();
   }
+  
   
    private void deactivate(){
-     if(!accepted){
-         active = false;
-         boundary[0].removeTreaty(this);
-         boundary[1].removeTreaty(this);
-     } 
+    if(active){
+       offerer.removeTreaty(this);
+       receiver.removeTreaty(this);
+     }
+     active = false; 
    }
    public Territory[] getTerritories(){
      return boundary;
@@ -91,5 +98,8 @@ public class Treaties {
    
    public int getIndex(){
      return index;
+   }
+   public boolean getActive(){
+     return active;
    }
 }

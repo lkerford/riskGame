@@ -1,7 +1,7 @@
 package risk;
 
 import java.util.ArrayList;
-import java.util.Collections;
+
 
 public class Territory extends GameObject {
   private String name;
@@ -11,14 +11,13 @@ public class Territory extends GameObject {
   private Units units; 
   private Player occupantPlayer;
   private boolean underTreaty;
-  private ArrayList<Integer> treaties;
-  
+   
   public Territory(String name){
     this.name = name;
     neighbours = new ArrayList<Territory>();
     occupied = false;
     underTreaty = false;
-    treaties = new ArrayList<Integer>();
+
     
   }
   public String getName(){
@@ -55,17 +54,10 @@ public class Territory extends GameObject {
   
   public void modifyTreatyState(boolean state, Treaties treaty){
     underTreaty = state;
-    treaties.add(treaty.getIndex());
-    Collections.sort(treaties);
-  }
-  public void removeTreaty(Treaties treaty){
-   treaties.remove(treaty.getIndex());
   }
   
   public boolean getTreaty(){
     return underTreaty;
   }
-  public ArrayList<Integer> getTreaties(){
-    return treaties;
-  }
+
 }

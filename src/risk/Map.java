@@ -4,11 +4,9 @@ import java.util.ArrayList;
 
 public class Map {
     private ArrayList<Territory> territories;
-    private ArrayList<Treaties> agreaments;
   
     public Map(){
-      territories =null;
-      agreaments = null;
+      territories =new ArrayList<Territory>();
     }
     
     public void addTerritory(Territory t){
@@ -16,12 +14,8 @@ public class Map {
       return;
     }
     
-    public void addTreaty(Treaties t){
-      agreaments.add(t);
-      return;
-    }
     
-   public boolean isTreaty(Territory first, Territory second){
+/*   public boolean isTreaty(Territory first, Territory second){
      boolean state = false;
      if(first.getTreaty()){
        if(second.getTreaty()){
@@ -44,5 +38,5 @@ public class Map {
      }
      }
      return false;
-   }
+   }*/
 }

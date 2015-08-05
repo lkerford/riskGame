@@ -6,6 +6,10 @@ public class Cash extends GameObject {
     amount = 0;
   }
   
+  public Cash(int c){
+    amount = c;
+  }
+  
   public int getAmount(){
     return amount;
   }
