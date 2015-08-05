@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Player {
   String name;
   int orderOfPlay;
-  Army army;
   Cash cash;
   ArrayList<Territory> territories; 
   
