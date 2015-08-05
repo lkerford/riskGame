@@ -3,6 +3,10 @@ package risk;
 public class risk {
 
  //initialization phase
+ /* this is a test script
+  * 
+  */
+  
   
   
   // create territries 

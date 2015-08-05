@@ -19,7 +19,7 @@ public class ArmyAI {
    
     if(unit.canMove(destination))
     {
-      if(destination.getState()){
+      if(!destination.getState()){
         unit.move(destination);
       }
       else if(armies.get(player.getOrder() -1).getPlayer() == destination.getPlayer()){

@@ -9,8 +9,9 @@ public class Treaties {
   private boolean accepted;
   private boolean active;
   private boolean violated;
+  private int index;
   
-  public Treaties(Player offerer, Player receiver, Territory first, Territory second, Cash amount, int numTurns){
+  public Treaties(Player offerer, Player receiver, Territory first, Territory second, Cash amount, int numTurns, int index){
     this.offerer= offerer;
     this.receiver = receiver;
     boundary = new Territory[]{first,second};
@@ -19,20 +20,27 @@ public class Treaties {
     accepted = false;
     active = true;
     violated = false;
+    this.index = index;
   }
   
   public void respond(boolean responce){
     if(active){
       accepted = responce;
+      if(accepted){
+        boundary[0].modifyTreatyState(true, this);
+        boundary[1].modifyTreatyState(true, this);
+      }
     }
     else if (!responce){}
      deactivate();
   }
   
-   public void deactivate(){
+   private void deactivate(){
      if(!accepted){
          active = false;
-     }
+         boundary[0].removeTreaty(this);
+         boundary[1].removeTreaty(this);
+     } 
    }
    public Territory[] getTerritories(){
      return boundary;
@@ -64,6 +72,9 @@ public class Treaties {
    
    public void modifyTurns(){
      --turns;
+     if(turns ==0 ){
+       deactivate();
+     }
    }
    
    public void isViolated(Player violator){
@@ -75,5 +86,10 @@ public class Treaties {
        (receiver.getCash()).changeAmount(fee.getAmount()-1);
        (offerer.getCash()).changeAmount(fee.getAmount());
      }
+     deactivate();
+   }
+   
+   public int getIndex(){
+     return index;
    }
 }
